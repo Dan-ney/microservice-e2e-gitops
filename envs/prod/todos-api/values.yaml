@@ -1,0 +1,41 @@
+microservice:
+  replicaCount: 1
+
+  image:
+    repository: asia-south1-docker.pkg.dev/project-75c9b927-531d-4e58-a2b/todos-api/todos-api
+    tag: "latest"
+    pullPolicy: Always
+
+  service:
+    enabled: true
+    type: ClusterIP
+    port: 80
+    targetPort: 8082
+
+  env:
+    - name: TODO_API_PORT
+      value: "8082"
+    - name: REDIS_HOST
+      value: "redis-master"
+    - name: REDIS_PORT
+      value: "6379"
+    - name: REDIS_CHANNEL
+      value: "log_channel"
+    - name: ZIPKIN_URL
+      value: "http://zipkin:9411/api/v2/spans"
+
+  envFromSecret:
+    - name: JWT_SECRET
+      secretName: jwt-secret
+      secretKey: jwt-secret
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  hpa:
+    enabled: false
