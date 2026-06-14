@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/Dan-ney/microservice-e2e-gitops.git
     targetRevision: main
-    path: envs/prod/infrastructure/ingress-nginx
+    path: envs/prod/ingress-nginx
 
   destination:
     server: https://kubernetes.default.svc
