@@ -8,7 +8,7 @@ microservice:
 
   service:
     enabled: true
-    type: LoadBalancer
+    type: ClusterIP
     port: 80
     targetPort: 8080
 
@@ -32,3 +32,7 @@ microservice:
 
   hpa:
     enabled: false
+
+  ingress:
+    enabled: true
+    host: ""
