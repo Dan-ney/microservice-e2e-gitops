@@ -1,0 +1,9 @@
+apiVersion: v2
+name: zipkin
+description: Zipkin distributed tracing
+version: 1.0.0
+
+dependencies:
+  - name: zipkin
+    version: "0.3.0"
+    repository: "https://openzipkin.github.io/zipkin"
