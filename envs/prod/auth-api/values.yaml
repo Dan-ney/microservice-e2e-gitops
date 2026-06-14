@@ -2,7 +2,7 @@ microservice:
   replicaCount: 1
 
   image:
-    repository: asia-south1-docker.pkg.dev/project-75c9b927-531d-4e58-a2b/auth-api/auth-api
+    repository: asia-south1-docker.pkg.dev/project-75c9b927-531d-4e58-a2b/auth-api:latest
     tag: "latest"
     pullPolicy: Always
 
