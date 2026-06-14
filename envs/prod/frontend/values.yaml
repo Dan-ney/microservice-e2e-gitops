@@ -1,0 +1,34 @@
+microservice:
+  replicaCount: 1
+
+  image:
+    repository: asia-south1-docker.pkg.dev/project-75c9b927-531d-4e58-a2b/frontend/frontend
+    tag: "latest"
+    pullPolicy: Always
+
+  service:
+    enabled: true
+    type: LoadBalancer
+    port: 80
+    targetPort: 8080
+
+  env:
+    - name: PORT
+      value: "8080"
+    - name: AUTH_API_ADDRESS
+      value: "http://auth-api:8081"
+    - name: TODOS_API_ADDRESS
+      value: "http://todos-api:8082"
+    - name: ZIPKIN_URL
+      value: "http://zipkin:9411/api/v2/spans"
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  hpa:
+    enabled: false
