@@ -1,0 +1,31 @@
+microservice:
+  replicaCount: 1
+
+  image:
+    repository: asia-south1-docker.pkg.dev/project-75c9b927-531d-4e58-a2b/log-message-processor/log-message-processor
+    tag: "latest"
+    pullPolicy: Always
+
+  service:
+    enabled: false
+
+  env:
+    - name: REDIS_HOST
+      value: "redis-master"
+    - name: REDIS_PORT
+      value: "6379"
+    - name: REDIS_CHANNEL
+      value: "log_channel"
+    - name: ZIPKIN_URL
+      value: "http://zipkin:9411/api/v1/spans"
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+  hpa:
+    enabled: false
